@@ -13,22 +13,22 @@
 				</div>
 			@endif
         <div class="col-10">
-          <h2>Jumlah Mapel Sekarang : {{count($data_mapel)}}</h2>
+          <h2>Edit Data</h2>
         </div>
         <div class="col-6">
-          <form action="/mapel/{{$mapel->id}}/update" method="POST">
+          <form action="/mapel/{{$data_mapel->id}}/update" method="POST">
           {{csrf_field()}}
 					<div class="form-group">
 						<label for="Kode Mapel">Kode Mapel</label> 
-						<input name="kode_mapel" class="form-control" id="emailAdress" placeholder="Kode Mapel" type="nomor" value="{{$mapel->kode_mapel}}">
+						<input name="kode_mapel" class="form-control" id="emailAdress" placeholder="Kode Mapel" type="nomor" value="{{$data_mapel->kode_mapel}}">
 					</div>
 					<div class="form-group">
 						<label for="text">Nama Mapel</label> 
-						<input name="nama_mapel" class="form-control" id="exampleInputPassword1" placeholder="Nama Mapel" type="text" value="{{$mapel->nama_mapel}}">
+						<input name="nama_mapel" class="form-control" id="exampleInputPassword1" placeholder="Nama Mapel" type="text" value="{{$data_mapel->nama_mapel}}">
 					</div>
 					<div class="form-group">
 						<label for="KKM">KKM</label> 
-						<input name="kkm" class="form-control" id="emailAdress" placeholder="KKM" type="text" value="{{$mapel->kkm}}">
+						<input name="kkm" class="form-control" id="emailAdress" placeholder="KKM" type="text" value="{{$data_mapel->kkm}}">
 					</div>
 					<div class="modal-footer">
                 		<input class="btn btn-primary" type="submit" value="Simpan">

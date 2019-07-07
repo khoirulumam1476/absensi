@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Guru extends Model
 {
 	protected $table = 'guru';
-	protected $fillable  = ['nip','nama_guru','ttl','jenis_kelamin','agama','telepon','alamat'];
+	protected $fillable  = ['user_id','nip','nama_guru','email_guru','ttl','jenis_kelamin','agama','telepon','alamat'];
+
+	public function mapel()
+	{
+		return $this->hasMany('App\Mapel');
+	}
 }

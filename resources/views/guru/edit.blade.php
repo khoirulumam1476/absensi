@@ -39,7 +39,14 @@
 					</div>
 				  <div class="form-group">
 				    <label for="Agama">Agama:</label>
-				    <input name="agama" type="text" class="form-control" id="Agama" value="{{$guru->agama}}">
+				    <select name="agama" class="form-control" id="sel1">
+						<option value="Islam" @if($guru->agama == 'Islam') selected @endif>Islam</option>
+						<option value="Kristen Protestan" @if($guru->agama == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
+						<option value="Katolik" @if($guru->agama == 'Katolik') selected @endif>Katolik</option>
+						<option value="Hindu" @if($guru->agama == 'Hindu') selected @endif>Hindu</option>
+						<option value="Buddha" @if($guru->agama == 'Buddha') selected @endif>Buddha</option>
+						<option value="Kong Hu Cu" @if($guru->agama == 'Kong Hu Cu') selected @endif>Kong Hu Cu</option>
+				  	</select>
 				  </div>
 				  <div class="form-group">
 				    <label for="Telepon">Telepon:</label>

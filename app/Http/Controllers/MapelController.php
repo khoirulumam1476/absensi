@@ -17,9 +17,9 @@ class MapelController extends Controller
     }
     public function edit($id)
     { 
-    	$mapel = \App\Mapel::find($id);
-    	$title 		= 'Data Mapel';
-    	return view('mapel.edit', ['mapel' => $mapel, 'title' => $title ]);
+    	$mapel     = \App\Mapel::find($id);
+    	$title 	   = 'Data Mapel';
+    	return view('mapel.edit', ['data_mapel' => $mapel, 'title' => $title ]);
 
     }
 

@@ -16,7 +16,7 @@
           <h2>Edit Data Kelas</h2>
         </div>
         <div class="col-6">
-          <form action="/kelas/tambah" method="POST">
+          <form action="/kelas/{{$kelas->id}}/update" method="POST">
          		 {{csrf_field()}}
 					<div class="form-group">
 						<label for="emailAdress">Kode Kelas</label> 

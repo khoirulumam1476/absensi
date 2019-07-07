@@ -13,35 +13,46 @@
 				<form action="/guru/tambah" method="POST">
 						{{csrf_field()}}
 					  <div class="form-group">
-					    <label for="Nip">NIP:</label>
-					    <input name="nip" type="text" class="form-control" id="TEXT">
+						<label for="Nip">NIP:</label>
+						<input name="nip" type="text" class="form-control" id="TEXT">
 					  </div>
 					  <div class="form-group">
-					    <label for="Nama Guru">Nama Guru:</label>
-					    <input name="nama_guru" type="text" class="form-control" id="Nama Guru">
+						<label for="Nama Guru">Nama Guru:</label>
+						<input name="nama_guru" type="text" class="form-control" id="Nama Guru">
 					  </div>
 					  <div class="form-group">
-					    <label for="Nama Guru">Tempat Tanggal Lahir:</label>
-					    <input name="ttl" type="text" class="form-control" id="Nama Guru">
+						<label for="Email">Email:</label>
+						<input name="email_guru" type="email" class="form-control">
 					  </div>
-			           <div class="form-group">
+					  <div class="form-group">
+						<label for="Nama Guru">Tempat Tanggal Lahir:</label>
+						<input name="ttl" type="text" class="form-control" id="Nama Guru">
+					  </div>
+					   <div class="form-group">
 						  <label for="sel1">Jenis Kelamin:</label>
 						  <select name="jenis_kelamin" class="form-control" id="sel1">
-						    <option>Laki-laki</option>
-						    <option>Perempuan</option>
+							<option>Laki-laki</option>
+							<option>Perempuan</option>
 						  </select>
 						</div>
 					  <div class="form-group">
-					    <label for="Agama">Agama:</label>
-					    <input name="agama" type="text" class="form-control" id="Agama">
+						<label for="Agama">Agama:</label>
+						<select name="agama" class="form-control" id="sel1">
+							<option value="Islam">Islam</option>
+							<option value="Kristen Protestan">Kristen Protestan</option>
+							<option value="Katolik">Katolik</option>
+							<option value="Hindu">Hindu</option>
+							<option value="Buddha">Buddha</option>
+							<option value="Kong Hu Cu">Kong Hu Cu</option>
+					  	</select>
 					  </div>
 					  <div class="form-group">
-					    <label for="Telepon">Telepon:</label>
-					    <input name="telepon" type="text" class="form-control" id="Telepon">
+						<label for="Telepon">Telepon:</label>
+						<input name="telepon" type="text" class="form-control" id="Telepon">
 					  </div>
 					  <div class="form-group">
-					    <label for="Alamat">Alamat:</label>
-					    <input name="alamat" type="text" class="form-control" id="Alamat">
+						<label for="Alamat">Alamat:</label>
+						<input name="alamat" type="text" class="form-control" id="Alamat">
 					  </div>
 					  <div class="modal-footer">
 						<button class="btn btn-secondary" data-dismiss="modal" type="button">Batal</button> <input class="btn btn-primary" type="submit" value="Simpan">
@@ -71,27 +82,27 @@
 			</div>
 			<table class="table table-bordered table-striped table-skripsi">
 				<thead class="table-dark">
-			      <tr>
-			        <th>NIP</th>
-			        <th>Nama</th>
-			        <th>Tempat Tanggal Lahir</th>
-			        <th>Jenis Kelamin</th>
-			        <th>Agama</th>
-			        <th>Telephone</th>
-			        <th>Alamat</th>
-			        <th>Aksi</th>
-			      </tr>
-			    </thead>
-			    <tbody>
-			    @foreach($data_guru as $guru)
-			      <tr>
-			        <td>{{ $guru->nip }}</td>
-			        <td>{{ $guru->nama_guru }}</td>
-			        <td>{{ $guru->ttl }}</td>
-			        <td>{{ $guru->jenis_kelamin}}</td>
-			        <td>{{ $guru->agama }}</td>
-			        <td>{{ $guru->telepon }}</td>
-			        <td>{{ $guru->alamat }}</td>
+				  <tr>
+					<th>NIP</th>
+					<th>Nama</th>
+					<th>Tempat Tanggal Lahir</th>
+					<th>Jenis Kelamin</th>
+					<th>Agama</th>
+					<th>Telephone</th>
+					<th>Alamat</th>
+					<th>Aksi</th>
+				  </tr>
+				</thead>
+				<tbody>
+				@foreach($data_guru as $guru)
+				  <tr>
+					<td>{{ $guru->nip }}</td>
+					<td>{{ $guru->nama_guru }}</td>
+					<td>{{ $guru->ttl }}</td>
+					<td>{{ $guru->jenis_kelamin}}</td>
+					<td>{{ $guru->agama }}</td>
+					<td>{{ $guru->telepon }}</td>
+					<td>{{ $guru->alamat }}</td>
 					<td class="text-center">
 						<div class="btn-group" role="group" aria-label="Basic example">
 							<a class="btn btn-info btn-sm">Detail</a>
@@ -99,9 +110,9 @@
 							<a href="/guru/{{$guru->id}}/delete"  class="btn btn-danger btn-sm" onclick="return confirm('Yakin AKan Dihapus?')">Hapus</a>
 						</div>
 					</td>
-			      </tr>
-			      @endforeach
-		       </tbody>
+				  </tr>
+				  @endforeach
+			   </tbody>
 		  </table>
 		</div>
 	</div>

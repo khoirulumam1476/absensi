@@ -38,7 +38,14 @@
 					</div>
 					<div class="form-group">
 						<label for="Agama">Agama:</label> 
-						<input name="agama" class="form-control" id="Agama" type="text" value="{{$siswa->agama}}">
+						<select name="agama" class="form-control" id="sel1">
+							<option value="Islam" @if($siswa->agama == 'Islam') selected @endif>Islam</option>
+							<option value="Kristen Protestan" @if($siswa->agama == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
+							<option value="Katolik" @if($siswa->agama == 'Katolik') selected @endif>Katolik</option>
+							<option value="Hindu" @if($siswa->agama == 'Hindu') selected @endif>Hindu</option>
+							<option value="Buddha" @if($siswa->agama == 'Buddha') selected @endif>Buddha</option>
+							<option value="Kong Hu Cu" @if($siswa->agama == 'Kong Hu Cu') selected @endif>Kong Hu Cu</option>
+					  	</select>
 					</div>
 					<div class="form-group">
 						<label for="Alamat">Alamat:</label> 
@@ -71,7 +78,15 @@
 					</div>
 					<div class="form-group">
 						<label for="Agama">Agama:</label> 
-						<input name="agama_wali" class="form-control" id="Agama" type="text" value="{{$siswa->agama_wali}}">
+						<select name="agama_wali" class="form-control" id="sel1">
+							<option value="Islam" @if($siswa->agama_wali == 'Islam') selected @endif>Islam</option>
+							<option value="Kristen Protestan" @if($siswa->agama_wali == 'Kristen Protestan') selected @endif>Kristen Protestan</option>
+							<option value="Katolik" @if($siswa->agama_wali == 'Katolik') selected @endif>Katolik</option>
+							<option value="Hindu" @if($siswa->agama_wali == 'Hindu') selected @endif>Hindu</option>
+							<option value="Buddha" @if($siswa->agama_wali == 'Buddha') selected @endif>Buddha</option>
+							<option value="Kong Hu Cu" @if($siswa->agama_wali == 'Kong Hu Cu') selected @endif>Kong Hu Cu</option>
+							<option>Islam</option>
+					  	</select>
 					</div>
 					<div class="form-group">
 						<label for="Pekerjaan">Pekerjaan:</label> 

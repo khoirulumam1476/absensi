@@ -9,6 +9,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
 	</script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css"></script>
 </head>
 <body>
 <div class="header">
@@ -30,25 +31,27 @@
 					 <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarSupportedContent" data-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
-							<li class="nav-item active">
+							<li class="nav-item ">
 								<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 							</li>
-							<li class="nav-item dropdown">
-								<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">Pengolahan Data</a>
+							@if(auth()->user()->role == 'admin' )
+								<li class="nav-item dropdown">
+									<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">Pengolahan Data</a>
 
+									<div aria-labelledby="navbarDropdown" class="dropdown-menu">
+										<a class="dropdown-item" href="{{ url('/jurusan') }}">Data Jurusan</a>
+										<a class="dropdown-item" href="{{ url('/kelas') }}">Data Kelas</a>
+										<a class="dropdown-item" href="{{ url('/mapel') }}">Data Mapel</a>
+										<a class="dropdown-item" href="{{ url('/siswa') }}">Data Siswa</a>
+										<a class="dropdown-item" href="{{ url('/guru') }}">Data Guru</a>
+									</div>
+								</li>
+							@endif;
+							<li class="nav-item dropdown">
+								<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ url('/absensi') }}" id="navbarDropdown" role="button">Absensi</a>
 								<div aria-labelledby="navbarDropdown" class="dropdown-menu">
-									<a class="dropdown-item" href="{{ url('/jurusan') }}">Data Jurusan</a>
-									<a class="dropdown-item" href="{{ url('/kelas') }}">Data Kelas</a>
-									<a class="dropdown-item" href="{{ url('/mapel') }}">Data Mapel</a>
-									<a class="dropdown-item" href="{{ url('/siswa') }}">Data Siswa</a>
-									<a class="dropdown-item" href="{{ url('/guru') }}">Data Guru</a>
+									<a class="dropdown-item" href="{{ url('/absensi/list') }}">Update Absensi</a>
 								</div>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="{{ url('/absensi') }}">Update Absensi</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="rekap">Rekap Absensi</a>
 							</li>
 							<li class="nav-item dropdown">
 								<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">Setting</a>
@@ -67,7 +70,7 @@
 								</div>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="rekap">Logout</a>
+								<a class="nav-link" href="/logout">Logout</a>
 							</li>
 						</ul>
 					</div>
@@ -84,6 +87,7 @@
 	</div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script>
 	jQuery(document).ready(function($) {
 		$("#success-alert").fadeTo(2000, 500).slideUp(500, function(){

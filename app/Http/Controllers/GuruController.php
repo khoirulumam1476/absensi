@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class GuruController extends Controller
 {
@@ -12,7 +13,21 @@ class GuruController extends Controller
     	return view( 'guru.index', ['data_guru' => $data_guru, 'title' => $title]);
     }
     function tambah(Request $request) {
-    	\App\Guru::create($request->all());
+    	
+        // Input data user
+        $user = new \App\User;
+        $user->role             = 'guru';
+        $user->name             = $request->nama_guru;
+        $user->email            = $request->email_guru;
+        $user->password         = bcrypt('rahasia');
+        $user->remember_token   = str_random(60);
+        $user->save();
+
+        // Input data guru
+        $request->request->add(['user_id' => $user->id]);
+        $guru = \App\Guru::create($request->all());
+        
+        
     	return redirect('/guru')->with('sukses','Data Berhasil di Input');
     }
 

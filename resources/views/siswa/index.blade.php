@@ -32,7 +32,14 @@
 					</div>
 					<div class="form-group">
 						<label for="Agama">Agama:</label> 
-						<input name="agama" class="form-control" id="Agama" type="agama">
+						<select name="agama" class="form-control" id="sel1">
+							<option value="Islam">Islam</option>
+							<option value="Kristen Protestan">Kristen Protestan</option>
+							<option value="Katolik">Katolik</option>
+							<option value="Hindu">Hindu</option>
+							<option value="Buddha">Buddha</option>
+							<option value="Kong Hu Cu">Kong Hu Cu</option>
+					  	</select>
 					</div>
 					<div class="form-group">
 						<label for="Alamat">Alamat:</label> 
@@ -42,7 +49,7 @@
 						<label for="sel1">Kelas:</label> 
 						<select name="kelas" class="form-control" id="kelas">
 							@foreach( $data_kelas as $kelas )
-							<option value="{{$kelas->kode_kelas}}">{{$kelas->kode_kelas}}</option>
+							<option value="{{$kelas->nama_kelas}}">{{$kelas->nama_kelas}}</option>
 							@endforeach
 						</select>
 					</div>
@@ -59,7 +66,14 @@
 					</div>
 					<div class="form-group">
 						<label for="Agama">Agama:</label> 
-						<input name="agama_wali" class="form-control" id="Agama" type="agama">
+						<select name="agama_wali" class="form-control" id="sel1">
+							<option value="Islam">Islam</option>
+							<option value="Kristen Protestan">Kristen Protestan</option>
+							<option value="Katolik">Katolik</option>
+							<option value="Hindu">Hindu</option>
+							<option value="Buddha">Buddha</option>
+							<option value="Kong Hu Cu">Kong Hu Cu</option>
+					  	</select>
 					</div>
 					<div class="form-group">
 						<label for="Pekerjaan">Pekerjaan:</label> 
@@ -113,9 +127,9 @@
 					@foreach($data_siswa as $siswa)
 					<tr>
 						<td>{{ $siswa->nis }}</td>
-						<td>{{ $siswa->nama }}</td>
-						<td>{{ $siswa->ttl }}</td>
-						<td>{{ $siswa->jenis_kelamin }}</td>
+						<td class="text-uppercase">{{ $siswa->nama }}</td>
+						<td class="text-capitalize">{{ $siswa->ttl }}</td>
+						<td class="text-center">{{ $siswa->jenis_kelamin }}</td>
 						<td>{{ $siswa->agama }}</td>
 						<td>{{ $siswa->alamat }}</td>
 						<td>{{ $siswa->kelas }}</td>
