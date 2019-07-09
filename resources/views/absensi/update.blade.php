@@ -49,16 +49,16 @@
 							<td class="col-1">{{$index+1}}</td>
 							<td class="col-7">{{$siswa->nama}}</td>
 							<td class="text-center col-1">
-								<input type="radio" name="siswa" id="defaultInline1" name="absensi-status-{{$siswa->id}}">
+								<input type="radio" name="absen[{{$siswa->id}}]" value="H">
 							</td>
 							<td class="text-center col-1">
-								<input type="radio" name="siswa" id="defaultInline1" name="absensi-status-{{$siswa->id}}">
+								<input type="radio" name="absen[{{$siswa->id}}]" value="S">
 							</td>
 							<td class="text-center col-1">
-								<input type="radio" name="siswa" id="defaultInline1" name="absensi-status-{{$siswa->id}}">
+								<input type="radio" name="absen[{{$siswa->id}}]" value="I">
 							</td>
 							<td class="text-center col-1">
-								<input type="radio" name="siswa" id="defaultInline1" name="absensi-status-{{$siswa->id}}">
+								<input type="radio" name="absen[{{$siswa->id}}]" value="A">
 							</td>
 						</tr>
 						@endforeach

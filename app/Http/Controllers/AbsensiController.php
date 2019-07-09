@@ -35,13 +35,19 @@ class AbsensiController extends Controller
 
     public function simpan(Request $request)
     {
-        $absensi = \App\Absensi::create($request->all());
+        $absensi            =  new \App\Absensi;
+        $absensi->id_guru   = $request->input('id_guru');
+        $absensi->id_kelas  = $request->input('id_kelas');
+        $absensi->tanggal   = $request->input('tanggal');
+        $absensi->save();
 
-        $detail_absensi = new \App\DetailAbsensi;
-        $detail_absensi->id_absensi       = $absensi->id;
-        $detail_absensi->id_siswa         = 2;
-        $detail_absensi->status           = 'A';
-        $detail_absensi->save();
+        foreach ( $request->absen as $user_id => $status ) {
+            $detail_absensi = new \App\DetailAbsensi;
+            $detail_absensi->id_absensi  = $absensi->id;
+            $detail_absensi->id_siswa    = $user_id;
+            $detail_absensi->status      = $status;
+            $detail_absensi->save();
+        }
 
         return redirect('/absensi/update')->with('sukses','Data Berhasil di Input');
 
