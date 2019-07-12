@@ -45,21 +45,13 @@
 				<tbody>
 					@foreach( $data_absensi as $index => $siswa )
 						<tr class="d-flex">
-							<td class="col-1 text-center">{{$index++}}</td>
+							<td class="col-1 text-center">{{$index+1}}</td>
 							<td class="col-1">{{$siswa['nis']}}</td>
 							<td class="col-6 text-uppercase">{{$siswa['nama']}}</td>
-							<td class="text-center col-1">
-								{{$siswa['hadir']}}
-							</td>
-							<td class="text-center col-1">
-								{{$siswa['sakit']}}
-							</td>
-							<td class="text-center col-1">
-								{{$siswa['ijin']}}
-							</td>
-							<td class="text-center col-1">
-								{{$siswa['alpa']}}
-							</td>
+							<td class="text-center col-1">{{$siswa['hadir']}}</td>
+							<td class="text-center col-1">{{$siswa['sakit']}}</td>
+							<td class="text-center col-1">{{$siswa['ijin']}}</td>
+							<td class="text-center col-1">{{$siswa['alpa']}}</td>
 						</tr>
 					@endforeach
 				</tbody>

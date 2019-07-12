@@ -66,7 +66,7 @@
 								<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">SMS Gateway</a>
 
 								<div aria-labelledby="navbarDropdown" class="dropdown-menu">
-									<a class="dropdown-item" href="{{ url('/message') }}">Message</a>
+									<a class="dropdown-item" href="{{ url('/sms') }}">Message</a>
 									<a class="dropdown-item" href="{{ url('/outbox') }}">Outbox</a>
 								</div>
 							</li>
