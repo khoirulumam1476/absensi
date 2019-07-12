@@ -3,13 +3,40 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class AbsensiController extends Controller
 {
     function index() {
     	$title 		= 'Input Absensi';
-    	$data_siswa = \App\Siswa::all();
-    	return view( 'absensi.index', ['data_siswa' => $data_siswa, 'title' => $title]);
+        $siswa      = \App\Siswa::all();
+        $details    = [];
+
+        foreach ( $siswa as $sis ) {
+            $data[] = [
+                'nis'   => $sis->nis,
+                'nama'  => $sis->nama,
+                'hadir' => $this->getStatus($sis->id, 'H')->count(),
+                'sakit' => $this->getStatus($sis->id, 'S')->count(),
+                'ijin'  => $this->getStatus($sis->id, 'I')->count(),
+                'alpa'  => $this->getStatus($sis->id, 'A')->count(),
+            ];
+            $details = collect($data);
+        }   
+
+        // dd($details);
+    	return view( 'absensi.index', ['data_absensi' => $details, 'title' => $title]);
+    }
+
+    public function getStatus($id, $status)
+    {
+        $details    = DB::table('detail_absensi')
+                    ->select('detail_absensi.status')
+                    ->where('id_siswa', $id )
+                    ->where('status', $status )
+                    ->get();
+
+        return $details;
     }
 
     public function list()

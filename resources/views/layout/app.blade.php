@@ -50,6 +50,7 @@
 							<li class="nav-item dropdown">
 								<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ url('/absensi') }}" id="navbarDropdown" role="button">Absensi</a>
 								<div aria-labelledby="navbarDropdown" class="dropdown-menu">
+									<a class="dropdown-item" href="{{ url('/absensi') }}">Data Absensi</a>
 									<a class="dropdown-item" href="{{ url('/absensi/list') }}">Update Absensi</a>
 								</div>
 							</li>

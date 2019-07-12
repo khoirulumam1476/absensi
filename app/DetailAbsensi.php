@@ -9,4 +9,5 @@ class DetailAbsensi extends Model
     //
     protected $table = 'detail_absensi';
 	protected $fillable  = ['id_absensi','id_siswa','status'];
+
 }

@@ -9,4 +9,5 @@ class Absensi extends Model
     //
     protected $table = 'absensi';
 	protected $fillable  = ['id_guru','id_kelas','tanggal'];
+
 }
