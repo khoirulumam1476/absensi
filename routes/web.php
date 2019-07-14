@@ -57,7 +57,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function() {
 
 	Route::get('/absensi', 'AbsensiController@index');
 	Route::get('/absensi/list', 'AbsensiController@list');
-	Route::get('/absensi/update', 'AbsensiController@update');
+	Route::get('/absensi/input', 'AbsensiController@input');
 	Route::post('/absensi/simpan', 'AbsensiController@simpan');
 
 	Route::get('/sms', 'SMSGateway@index');

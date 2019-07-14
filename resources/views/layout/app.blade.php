@@ -34,7 +34,7 @@
 							<li class="nav-item ">
 								<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 							</li>
-							@if(auth()->user()->role == 'admin' )
+							@if( Auth::check() && auth()->user()->role == 'admin' )
 								<li class="nav-item dropdown">
 									<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">Pengolahan Data</a>
 
@@ -50,8 +50,8 @@
 							<li class="nav-item dropdown">
 								<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ url('/absensi') }}" id="navbarDropdown" role="button">Absensi</a>
 								<div aria-labelledby="navbarDropdown" class="dropdown-menu">
-									<a class="dropdown-item" href="{{ url('/absensi') }}">Data Absensi</a>
-									<a class="dropdown-item" href="{{ url('/absensi/list') }}">Update Absensi</a>
+									<a class="dropdown-item" href="{{ url('/absensi') }}">Detail Absensi</a>
+									<a class="dropdown-item" href="{{ url('/absensi/list') }}">Input Absensi</a>
 								</div>
 							</li>
 							<li class="nav-item dropdown">
@@ -70,9 +70,11 @@
 									<a class="dropdown-item" href="{{ url('/outbox') }}">Outbox</a>
 								</div>
 							</li>
+							@if( Auth::check() )
 							<li class="nav-item">
 								<a class="nav-link" href="/logout">Logout</a>
 							</li>
+							@endif
 						</ul>
 					</div>
 				</nav>

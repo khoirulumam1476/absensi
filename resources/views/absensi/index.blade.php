@@ -5,31 +5,39 @@
 <div class="section-content">
 	<div class="container"> 
 		<div class="wrapper">
-			<div class="form-row">
-				<div class="col-md-3 mb-3">
-					<label for="validationCustom01">Mapel</label> 
-					<input class="form-control" id="validationCustom01" data-provide="datepicker" placeholder="Tanggal" type="text" value="" name="tanggal">
+			@if(session('sukses'))  
+				<div class="col-12">
+					<div id="success-alert" class="alert alert-success" role="alert">
+					  {{session('sukses')}}
+					</div>
 				</div>
-				<div class="col-md-3 mb-3">
-					<label for="validationCustom02">Kelas</label> 
-					<select name="mapel" class="form-control" id="sel1">
-						<option value="MATEMATIKA">MATEMATIKA</option>
-						<option value="BAHASA INDONESIA">BAHASA INDONESIA</option>
-						<option value="PPKN">PPKN</option>
-					</select>
+			@endif
+
+			<form action="" method="GET">
+				<div class="form-row">
+					<div class="col-md-3 mb-3">
+						<label for="validationCustom02">Kelas</label> 
+						<select name="kelas" class="form-control" id="sel1">
+								<option value="0">Semua Kelas</option>
+								@foreach( $data_kelas as $kelas )
+									<option value="{{$kelas->id}}" @if(Request::get('kelas') == $kelas->id ) selected @endif>{{$kelas->nama_kelas}}</option>
+								@endforeach
+						  </select>
+					</div>
+					<div class="col-md-3 mb-3">
+						<label for="validationCustom02">Semester</label> 
+						<select name="semester" class="form-control" id="sel1">
+							<option value="0">Semua Semester</option>
+							<option value="ganjil" @if(Request::get('semester') == 'ganjil' ) selected @endif >Ganjil</option>
+							<option value="genap" @if(Request::get('semester') == 'genap' ) selected @endif>Genap</option>
+						</select>
+					</div>
+					<div class="col-md-3 mb-3">
+						<label for=""></label>
+						<input type="submit" value="Tampilkan" class="form-control btn btn-primary btn-filter">
+					</div>
 				</div>
-				<div class="col-md-3 mb-3">
-					<label for="validationCustom02">Semester</label> 
-					<select name="mapel" class="form-control" id="sel1">
-						<option value="MATEMATIKA">MATEMATIKA</option>
-						<option value="BAHASA INDONESIA">BAHASA INDONESIA</option>
-						<option value="PPKN">PPKN</option>
-					</select>
-				</div>
-				<div class="col-md-3 mb-3">
-					<input type="submit" value="Tampilkan">
-				</div>
-			</div>
+			</form>
 			<table class="table table-bordered table-striped table-skripsi">
 				<thead class="table-dark">
 					<tr class="d-flex">

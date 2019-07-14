@@ -15,20 +15,41 @@
 			
 			<form action="/absensi/simpan" method="POST">
 				{{ csrf_field() }}
-				<input type="hidden" name="id_kelas" value="10">
-				<input type="hidden" name="id_guru" value="5">
-				<div class="form-row">
-					<div class="col-md-4 mb-3">
+				<input type="hidden" name="id_kelas" value="{{ app('request')->input('id_kelas') }}">
+				<div class="col-md-4 mb-3">
+					<div class="form-row">
 						<label for="validationCustom01">Tanggal</label> 
-						<input class="form-control" id="validationCustom01" data-provide="datepicker" placeholder="Tanggal" type="text" value="" name="tanggal">
+						<input class="form-control" type="text" value="{{ date('Y-m-d H:i:s') }}" disabled>
+						<input class="form-control" type="hidden" value="{{ date('Y-m-d H:i:s') }}" name="tanggal">
 					</div>
-					<div class="col-md-4 mb-3">
+				</div>
+				<div class="col-md-4 mb-3">
+					<div class="form-row">
 						<label for="validationCustom02">Mata Pelajaran</label> 
-						<select name="mapel" class="form-control" id="sel1">
+						<select name="id_mapel" class="form-control" id="sel1">
 							@foreach( $data_mapel as $mapel )
-						    	<option value="{{$mapel->nama_mapel}}">{{$mapel->nama_mapel}}</option>
+						    	<option value="{{$mapel->id}}">{{$mapel->nama_mapel}}</option>
 							@endforeach
 					  </select>
+					</div>
+				</div>
+				<div class="col-md-4 mb-3">
+					<div class="form-row">
+						<label for="nama-guru">Nama Guru</label> 
+						<select name="id_guru" class="form-control" id="sel1">
+							@foreach( $data_guru as $guru )
+						    	<option value="{{$guru->id}}">{{$guru->nama_guru}}</option>
+							@endforeach
+					  </select>
+					</div>
+				</div>
+				<div class="col-md-4 mb-3">
+					<div class="form-row">
+						<label for="semester">Semester</label> 
+						<select name="semester" class="form-control" id="sel1">
+					    	<option value="ganjil">Ganjil</option>
+					    	<option value="genap">Genap</option>
+					  	</select>
 					</div>
 				</div>
 
@@ -46,8 +67,8 @@
 					<tbody>
 						@foreach( $data_siswa as $index => $siswa )
 						<tr class="d-flex">
-							<td class="col-1">{{$index+1}}</td>
-							<td class="col-7">{{$siswa->nama}}</td>
+							<td class="col-1 text-center">{{$index+1}}</td>
+							<td class="col-7 text-uppercase">{{$siswa->nama}}</td>
 							<td class="text-center col-1">
 								<input type="radio" name="absen[{{$siswa->id}}]" value="H">
 							</td>

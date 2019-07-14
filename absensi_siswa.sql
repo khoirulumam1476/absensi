@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 12, 2019 at 02:01 PM
+-- Generation Time: Jul 14, 2019 at 06:27 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.15
 
@@ -32,6 +32,8 @@ CREATE TABLE `absensi` (
   `id` int(10) UNSIGNED NOT NULL,
   `id_guru` int(10) UNSIGNED NOT NULL,
   `id_kelas` int(10) UNSIGNED NOT NULL,
+  `id_mapel` int(48) NOT NULL,
+  `semester` varchar(48) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tanggal` varchar(48) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -41,10 +43,9 @@ CREATE TABLE `absensi` (
 -- Dumping data for table `absensi`
 --
 
-INSERT INTO `absensi` (`id`, `id_guru`, `id_kelas`, `tanggal`, `created_at`, `updated_at`) VALUES
-(16, 5, 10, '07/10/2019', '2019-07-08 05:32:06', '2019-07-08 05:32:06'),
-(17, 5, 10, '07/02/2019', '2019-07-08 05:33:06', '2019-07-08 05:33:06'),
-(18, 5, 10, '07/11/2019', '2019-07-09 06:12:37', '2019-07-09 06:12:37');
+INSERT INTO `absensi` (`id`, `id_guru`, `id_kelas`, `id_mapel`, `semester`, `tanggal`, `created_at`, `updated_at`) VALUES
+(20, 1, 9, 3, 'ganjil', '2019-07-12 13:29:46', '2019-07-12 06:29:52', '2019-07-12 06:29:52'),
+(21, 1, 9, 3, 'genap', '2019-07-12 13:48:04', '2019-07-12 06:48:18', '2019-07-12 06:48:18');
 
 -- --------------------------------------------------------
 
@@ -66,15 +67,12 @@ CREATE TABLE `detail_absensi` (
 --
 
 INSERT INTO `detail_absensi` (`id`, `id_absensi`, `id_siswa`, `status`, `created_at`, `updated_at`) VALUES
-(9, 16, 1, 'H', '2019-07-08 05:32:06', '2019-07-08 05:32:06'),
-(10, 16, 2, 'S', '2019-07-08 05:32:06', '2019-07-08 05:32:06'),
-(11, 16, 6, 'I', '2019-07-08 05:32:06', '2019-07-08 05:32:06'),
-(12, 17, 1, 'I', '2019-07-08 05:33:06', '2019-07-08 05:33:06'),
-(13, 17, 2, 'A', '2019-07-08 05:33:06', '2019-07-08 05:33:06'),
-(14, 17, 6, 'H', '2019-07-08 05:33:06', '2019-07-08 05:33:06'),
-(15, 18, 1, 'S', '2019-07-09 06:12:37', '2019-07-09 06:12:37'),
-(16, 18, 2, 'S', '2019-07-09 06:12:37', '2019-07-09 06:12:37'),
-(17, 18, 6, 'S', '2019-07-09 06:12:37', '2019-07-09 06:12:37');
+(19, 20, 1, 'H', '2019-07-12 06:29:52', '2019-07-12 06:29:52'),
+(20, 20, 2, 'S', '2019-07-12 06:29:52', '2019-07-12 06:29:52'),
+(21, 20, 6, 'I', '2019-07-12 06:29:52', '2019-07-12 06:29:52'),
+(22, 21, 1, 'I', '2019-07-12 06:48:18', '2019-07-12 06:48:18'),
+(23, 21, 2, 'A', '2019-07-12 06:48:18', '2019-07-12 06:48:18'),
+(24, 21, 6, 'S', '2019-07-12 06:48:18', '2019-07-12 06:48:18');
 
 -- --------------------------------------------------------
 
@@ -166,6 +164,7 @@ INSERT INTO `kelas` (`id`, `kode_kelas`, `kode_jurusan`, `nama_kelas`, `created_
 
 CREATE TABLE `mapel` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `id_guru` int(48) NOT NULL,
   `kode_mapel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_mapel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `kkm` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -177,10 +176,10 @@ CREATE TABLE `mapel` (
 -- Dumping data for table `mapel`
 --
 
-INSERT INTO `mapel` (`id`, `kode_mapel`, `nama_mapel`, `kkm`, `created_at`, `updated_at`) VALUES
-(3, 'M002', 'MATEMATIKA', '65', '2019-07-07 06:06:15', '2019-07-07 06:06:15'),
-(4, 'M001', 'BAHASA INDONESIA', '65', '2019-07-07 06:06:59', '2019-07-07 06:06:59'),
-(5, 'M003', 'PPKN', '65', '2019-07-07 06:07:49', '2019-07-07 06:31:53');
+INSERT INTO `mapel` (`id`, `id_guru`, `kode_mapel`, `nama_mapel`, `kkm`, `created_at`, `updated_at`) VALUES
+(3, 0, 'M002', 'MATEMATIKA', '65', '2019-07-07 06:06:15', '2019-07-07 06:06:15'),
+(4, 0, 'M001', 'BAHASA INDONESIA', '65', '2019-07-07 06:06:59', '2019-07-07 06:06:59'),
+(5, 0, 'M003', 'PPKN', '65', '2019-07-07 06:07:49', '2019-07-07 06:31:53');
 
 -- --------------------------------------------------------
 
@@ -257,8 +256,9 @@ INSERT INTO `siswa` (`id`, `nis`, `nama`, `ttl`, `jenis_kelamin`, `agama`, `alam
 (2, '1102', 'Dimas', 'probolinggo, 30-04-2001', 'L', 'Islam', 'banyuanyar', 'X-IPS', 'nana', 'P', 'Islam', 'guru', '085259409507', '2019-06-26 05:43:05', '2019-07-07 06:14:24'),
 (3, '1234', 'jajan', 'probolinggo, 03-04-2001', 'L', 'Islam', 'Patalan Lor', 'X-AGAMA', 'sami', 'P', 'Islam', 'ibu rumah tangga', '085259409507', '2019-06-26 05:44:50', '2019-07-07 06:15:22'),
 (6, '12345', 'SINGO EDAN', 'Grobogan, 30-06-1996', 'P', 'Islam', 'Jl. SIngosari', 'X-IPS', 'Pak SOngot', 'L', 'Islam', 'Petani', '082302003423', '2019-07-03 17:35:30', '2019-07-08 04:57:58'),
-(7, '2341', 'dandi aja', 'probolinggo, 01-16-1994', 'L', 'Islam', 'dimanapun', 'K005', 'ibuk', 'Perempuan', 'Islam', 'tidur', '085259409507', '2019-07-07 06:17:46', '2019-07-07 06:17:46'),
-(8, '2456', 'ningsi', 'malang, 13-02-1998', 'P', 'Islam', 'Jl. SIngosari', 'K006', 'nama', 'Laki-laki', 'Islam', 'Petani', '082302003423', '2019-07-07 06:19:26', '2019-07-07 06:19:26');
+(7, '2341', 'dandi aja', 'probolinggo, 01-16-1994', 'L', 'Islam', 'dimanapun', 'X-AGAMA', 'ibuk', 'L', 'Islam', 'tidur', '085259409507', '2019-07-07 06:17:46', '2019-07-12 04:42:20'),
+(8, '2456', 'ningsi', 'malang, 13-02-1998', 'P', 'Islam', 'Jl. SIngosari', 'X-BAHASA', 'nama', 'L', 'Islam', 'Petani', '082302003423', '2019-07-07 06:19:26', '2019-07-12 04:42:34'),
+(9, '1353', 'dadang', 'Probolinggo, 20-12-1996', 'L', 'Islam', 'gending', 'XI-IPS', 'liili', 'Perempuan', 'Islam', 'ibu rumah tangga', '085259409507', '2019-07-12 04:44:16', '2019-07-12 04:44:16');
 
 -- --------------------------------------------------------
 
@@ -283,7 +283,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'tapai', 'a@mail.com', NULL, '$2y$10$lGORjsxOQDUTxHJ8FoqkG.z7EdguL5qAXTUvz770PIik4oxy2rpri', '0zlNJMddPLo5HWqk5mOTxs7ttorgtMBydhqRxpM9R55Yt1ms51IGDWgPxMH3', '2019-07-05 21:32:11', '2019-07-05 21:32:11'),
+(1, 'admin', 'tapai', 'a@mail.com', NULL, '$2y$10$lGORjsxOQDUTxHJ8FoqkG.z7EdguL5qAXTUvz770PIik4oxy2rpri', 'E6QZsYfpC4xHG73MvuFrQU3Ao5JzQmCIQ7xPCnIOEuFpaoHzaaupdwHJvz6W', '2019-07-05 21:32:11', '2019-07-05 21:32:11'),
 (4, 'guru', 'Ronal Dikin', 'yahoo@gmail.com', NULL, '$2y$10$pLPEB20iQZD/ZwPsOnpQA.vEJElGhJDRbAJlq0AyY6NOYsNf25W3m', 'VMqxcvkEWmA9Kvo2I4GspxtM7pShWfiqapA0Lcfm8u7JWRMgD6JEFaJ8KwYI', '2019-07-06 03:45:04', '2019-07-06 03:45:04');
 
 --
@@ -360,13 +360,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `detail_absensi`
 --
 ALTER TABLE `detail_absensi`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `guru`
@@ -402,7 +402,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -24,7 +24,7 @@
 								0 Siswa
 							</td>
 							<td class="col-2 text-center">
-								<a href="/absensi/update?kode_kelas={{$kelas->nama_kelas}}" class="btn btn-primary btn-sm">Update</a>
+								<a href="/absensi/input?id_kelas={{$kelas->id}}" class="btn btn-primary btn-sm">Update</a>
 							</td>
 						</tr>
 						@endforeach
