@@ -61,5 +61,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function() {
 	Route::post('/absensi/simpan', 'AbsensiController@simpan');
 
 	Route::get('/sms', 'SMSGateway@index');
+	Route::post('/sms/kirimsms', 'SMSGateway@kirimSMS');
+	Route::get('/sms/outbox', 'SMSGateway@outbox');
 
 });

@@ -67,7 +67,7 @@
 
 								<div aria-labelledby="navbarDropdown" class="dropdown-menu">
 									<a class="dropdown-item" href="{{ url('/sms') }}">Message</a>
-									<a class="dropdown-item" href="{{ url('/outbox') }}">Outbox</a>
+									<a class="dropdown-item" href="{{ url('/sms/outbox') }}">Outbox</a>
 								</div>
 							</li>
 							@if( Auth::check() )
