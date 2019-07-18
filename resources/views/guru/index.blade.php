@@ -2,6 +2,7 @@
 
 @section('content')
 
+<!-- MODAL TAMBAH DATA -->
 <div aria-hidden="true" aria-labelledby="guruModalLabel" class="modal fade" id="inputGuru" role="dialog" tabindex="-1">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
@@ -63,6 +64,7 @@
 		</div>
 	</div>
 
+
 <div class="section-content">
 	<div class="container"> 
 		<div class="row">
@@ -105,7 +107,7 @@
 					<td>{{ $guru->alamat }}</td>
 					<td class="text-center">
 						<div class="btn-group" role="group" aria-label="Basic example">
-							<a class="btn btn-info btn-sm">Detail</a>
+							<a href="/guru/{{$guru->id}}/detail" class="btn btn-info btn-sm">Detail</a>
 							<a href="/guru/{{$guru->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
 							<a href="/guru/{{$guru->id}}/delete"  class="btn btn-danger btn-sm" onclick="return confirm('Yakin AKan Dihapus?')">Hapus</a>
 						</div>

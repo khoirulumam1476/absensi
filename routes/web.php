@@ -31,6 +31,8 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function() {
 	Route::get('/guru/{id}/edit', 'GuruController@edit');
 	Route::post('/guru/{id}/update', 'GuruController@update');
 	Route::get('/guru/{id}/delete', 'GuruController@delete');
+	Route::get('/guru/{id}/detail', 'GuruController@detail');
+
 
 	Route::get('/jurusan', 'JurusanController@index');
 	Route::post('/jurusan/tambah', 'JurusanController@tambah');

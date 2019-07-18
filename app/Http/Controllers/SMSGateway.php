@@ -97,14 +97,16 @@ class SMSGateway extends Controller
         $result = json_decode( $result ); 
         $details = [];
 
-        foreach ( $result->smss as $sms ) {
-            $data[] = [
-                'telepon'   => $sms->sendto,
-                'pesan'  	=> $sms->body,
-                'status' 	=> 'Terkirim',
-            ];
-            $details = collect($data);
-        }  
+        if ( ! empty( $result->smss ) ) {
+            foreach ( $result->smss as $sms ) {
+                $data[] = [
+                    'telepon'   => $sms->sendto,
+                    'pesan'  	=> $sms->body,
+                    'status' 	=> 'Terkirim',
+                ];
+                $details = collect($data);
+            }  
+        }
 
         return view( 'sms.outbox', ['data_sms' => $details, 'title' => $title]);
     }

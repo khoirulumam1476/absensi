@@ -56,4 +56,11 @@ class GuruController extends Controller
     	return redirect('/guru')->with('sukses','Data Berhasil di hapus');
 
     }
+
+    public function detail($id)
+    { 
+        $guru = \App\Guru::find($id);
+        $title      = 'Data Guru';
+        return view('guru.detail', ['guru' => $guru, 'title' => $title ]);
+    }
 }
