@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
 	<title>{{$title}}</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -32,7 +33,7 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item ">
-								<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+								<a class="nav-link" href="/"><i class="fa fa-home"></i> Home <span class="sr-only">(current)</span></a>
 							</li>
 							@if( Auth::check() && auth()->user()->role == 'admin' )
 								<li class="nav-item dropdown">
@@ -55,14 +56,6 @@
 								</div>
 							</li>
 							<li class="nav-item dropdown">
-								<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">Setting</a>
-
-								<div aria-labelledby="navbarDropdown" class="dropdown-menu">
-									<a class="dropdown-item" href="{{ url('/setting') }}">Setting koneksi</a>
-									<a class="dropdown-item" href="{{ url('/control') }}">Control Access</a>
-								</div>
-							</li>
-							<li class="nav-item dropdown">
 								<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">SMS Gateway</a>
 
 								<div aria-labelledby="navbarDropdown" class="dropdown-menu">
@@ -70,12 +63,19 @@
 									<a class="dropdown-item" href="{{ url('/sms/outbox') }}">Outbox</a>
 								</div>
 							</li>
-							@if( Auth::check() )
-							<li class="nav-item">
-								<a class="nav-link" href="/logout">Logout</a>
-							</li>
-							@endif
 						</ul>
+						@if( Auth::check() )
+							<ul class="navbar-nav mr">
+								<li class="nav-item dropdown">
+									<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle text-capitalize" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">Hi, {{Auth::User()->name}}</a>
+									<div aria-labelledby="navbarDropdown" class="dropdown-menu">
+										<a class="dropdown-item" href="{{ url('/sms/outbox') }}">Edit Profile</a>
+										<a class="dropdown-item" href="{{ url('/sms') }}">Manage Users</a>
+										<a class="dropdown-item" href="/logout">Logout</a>
+									</div>
+								</li>
+							</ul>
+						@endif
 					</div>
 				</nav>
 			</div>

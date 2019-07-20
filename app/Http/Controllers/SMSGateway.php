@@ -92,7 +92,7 @@ class SMSGateway extends Controller
         $title      = 'SMS Gateway';
         $client     = new \GuzzleHttp\Client();
         
-        $test = 'https://smsgateway24.com/getdata/getallsms?token=56383d5d000a887ac11d21d2ab4ff365&device_id=778&status=2&begindate=2019-07-13&enddate=2019-07-16';
+        $test = 'https://smsgateway24.com/getdata/getallsms?token=56383d5d000a887ac11d21d2ab4ff365&device_id=778&status=2&begindate=2019-07-13&enddate=2030-07-16';
         $result = file_get_contents( $test ); 
         $result = json_decode( $result ); 
         $details = [];

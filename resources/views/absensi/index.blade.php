@@ -64,6 +64,7 @@
 					@endforeach
 				</tbody>
 			</table>
+			<a href="/absensi/export" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
 			
 		</div>
 	</div>

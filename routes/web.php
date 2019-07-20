@@ -33,7 +33,6 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function() {
 	Route::get('/guru/{id}/delete', 'GuruController@delete');
 	Route::get('/guru/{id}/detail', 'GuruController@detail');
 
-
 	Route::get('/jurusan', 'JurusanController@index');
 	Route::post('/jurusan/tambah', 'JurusanController@tambah');
 	Route::get('/jurusan/{id}/edit', 'JurusanController@edit');
@@ -61,6 +60,7 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function() {
 	Route::get('/absensi/list', 'AbsensiController@list');
 	Route::get('/absensi/input', 'AbsensiController@input');
 	Route::post('/absensi/simpan', 'AbsensiController@simpan');
+	Route::get('/absensi/export', 'AbsensiController@export');
 
 	Route::get('/sms', 'SMSGateway@index');
 	Route::post('/sms/kirimsms', 'SMSGateway@kirimSMS');

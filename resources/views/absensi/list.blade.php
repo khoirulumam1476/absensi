@@ -19,12 +19,12 @@
 						@foreach( $data_kelas as $index => $kelas )
 						<tr class="d-flex">
 							<td class="col-1 text-center">{{$index+1}}</td>
-							<td class="col-7">{{$kelas->nama_kelas}}</td>
+							<td class="col-7">{{$kelas['nama_kelas']}}</td>
 							<td class="col-2 text-center">
-								0 Siswa
+								{{$kelas['tidak_masuk']}} Siswa
 							</td>
 							<td class="col-2 text-center">
-								<a href="/absensi/input?id_kelas={{$kelas->id}}" class="btn btn-primary btn-sm">Update</a>
+								<a href="/absensi/input?id_kelas={{$kelas['id_kelas']}}" class="btn btn-primary btn-sm">Update</a>
 							</td>
 						</tr>
 						@endforeach
