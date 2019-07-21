@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 14, 2019 at 06:27 PM
+-- Generation Time: Jul 21, 2019 at 07:21 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.15
 
@@ -33,8 +33,9 @@ CREATE TABLE `absensi` (
   `id_guru` int(10) UNSIGNED NOT NULL,
   `id_kelas` int(10) UNSIGNED NOT NULL,
   `id_mapel` int(48) NOT NULL,
+  `jam_pelajaran` varchar(48) COLLATE utf8mb4_unicode_ci NOT NULL,
   `semester` varchar(48) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tanggal` varchar(48) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -43,9 +44,10 @@ CREATE TABLE `absensi` (
 -- Dumping data for table `absensi`
 --
 
-INSERT INTO `absensi` (`id`, `id_guru`, `id_kelas`, `id_mapel`, `semester`, `tanggal`, `created_at`, `updated_at`) VALUES
-(20, 1, 9, 3, 'ganjil', '2019-07-12 13:29:46', '2019-07-12 06:29:52', '2019-07-12 06:29:52'),
-(21, 1, 9, 3, 'genap', '2019-07-12 13:48:04', '2019-07-12 06:48:18', '2019-07-12 06:48:18');
+INSERT INTO `absensi` (`id`, `id_guru`, `id_kelas`, `id_mapel`, `jam_pelajaran`, `semester`, `tanggal`, `created_at`, `updated_at`) VALUES
+(20, 1, 9, 3, 'pertama', 'ganjil', '2019-07-12 06:29:46', '2019-07-12 06:29:52', '2019-07-12 06:29:52'),
+(21, 1, 9, 3, '', 'genap', '2019-07-12 06:48:04', '2019-07-12 06:48:18', '2019-07-12 06:48:18'),
+(22, 5, 10, 4, '', 'ganjil', '2019-07-20 06:18:24', '2019-07-20 06:18:41', '2019-07-20 06:18:41');
 
 -- --------------------------------------------------------
 
@@ -72,7 +74,9 @@ INSERT INTO `detail_absensi` (`id`, `id_absensi`, `id_siswa`, `status`, `created
 (21, 20, 6, 'I', '2019-07-12 06:29:52', '2019-07-12 06:29:52'),
 (22, 21, 1, 'I', '2019-07-12 06:48:18', '2019-07-12 06:48:18'),
 (23, 21, 2, 'A', '2019-07-12 06:48:18', '2019-07-12 06:48:18'),
-(24, 21, 6, 'S', '2019-07-12 06:48:18', '2019-07-12 06:48:18');
+(24, 21, 6, 'S', '2019-07-12 06:48:18', '2019-07-12 06:48:18'),
+(25, 22, 3, 'S', '2019-07-20 06:18:41', '2019-07-20 06:18:41'),
+(26, 22, 7, 'I', '2019-07-20 06:18:41', '2019-07-20 06:18:41');
 
 -- --------------------------------------------------------
 
@@ -101,7 +105,8 @@ CREATE TABLE `guru` (
 
 INSERT INTO `guru` (`id`, `user_id`, `nip`, `nama_guru`, `email_guru`, `ttl`, `jenis_kelamin`, `agama`, `telepon`, `alamat`, `created_at`, `updated_at`) VALUES
 (1, 0, '1755', 'Tapai Kolop', '', 'nyar dejeh', 'P', 'Katolik', '0987543757', 'Liprak', '2019-06-26 08:05:31', '2019-07-07 05:04:27'),
-(5, 4, '212', 'Ronal Dikin', 'yahoo@gmail.com', 'Mayangan', 'L', 'Hindu', '081322280004', 'Kampung Ikan', '2019-07-06 03:45:04', '2019-07-07 05:04:36');
+(5, 4, '212', 'Ronal Dikin', 'yahoo@gmail.com', 'Mayangan', 'L', 'Hindu', '081322280004', 'Kampung Ikan', '2019-07-06 03:45:04', '2019-07-07 05:04:36'),
+(6, 5, '222', 'Indah Kusuma', 'indah@kusuma.com', 'Probolinggo, 01-06-1989', 'Perempuan', 'Islam', '081322280004', 'Banyuanyar Lor', '2019-07-20 23:34:58', '2019-07-20 23:34:58');
 
 -- --------------------------------------------------------
 
@@ -283,8 +288,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'tapai', 'a@mail.com', NULL, '$2y$10$lGORjsxOQDUTxHJ8FoqkG.z7EdguL5qAXTUvz770PIik4oxy2rpri', 'E6QZsYfpC4xHG73MvuFrQU3Ao5JzQmCIQ7xPCnIOEuFpaoHzaaupdwHJvz6W', '2019-07-05 21:32:11', '2019-07-05 21:32:11'),
-(4, 'guru', 'Ronal Dikin', 'yahoo@gmail.com', NULL, '$2y$10$pLPEB20iQZD/ZwPsOnpQA.vEJElGhJDRbAJlq0AyY6NOYsNf25W3m', 'VMqxcvkEWmA9Kvo2I4GspxtM7pShWfiqapA0Lcfm8u7JWRMgD6JEFaJ8KwYI', '2019-07-06 03:45:04', '2019-07-06 03:45:04');
+(1, 'admin', 'tapai', 'a@mail.com', NULL, '$2y$10$lGORjsxOQDUTxHJ8FoqkG.z7EdguL5qAXTUvz770PIik4oxy2rpri', 'SISmX5Hyp15lJ886Xj5Xpx0TO8JFzO6v97rxcQQaWlsIirFOh96b9lLoUiCx', '2019-07-05 21:32:11', '2019-07-05 21:32:11'),
+(4, 'guru', 'Ronal Dikin', 'yahoo@gmail.com', NULL, '$2y$10$pLPEB20iQZD/ZwPsOnpQA.vEJElGhJDRbAJlq0AyY6NOYsNf25W3m', 'VMqxcvkEWmA9Kvo2I4GspxtM7pShWfiqapA0Lcfm8u7JWRMgD6JEFaJ8KwYI', '2019-07-06 03:45:04', '2019-07-06 03:45:04'),
+(5, 'guru', 'Indah Kusuma', 'indah@kusuma.com', NULL, '$2y$10$rq50fxXzRvH6W.g0jSLB.O4wOtgpVkaOGwPu5.ioYM07EguECoeuu', 'zwySWjNIIQSTLKI2NHXIVViTdctWyP6m3vlsBA3J2bK3Hrjao2Vgbd9bYyzx', '2019-07-20 23:34:58', '2019-07-20 23:37:52');
 
 --
 -- Indexes for dumped tables
@@ -360,19 +366,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `detail_absensi`
 --
 ALTER TABLE `detail_absensi`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `guru`
 --
 ALTER TABLE `guru`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `jurusan`
@@ -408,7 +414,7 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
