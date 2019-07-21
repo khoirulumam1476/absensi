@@ -13,19 +13,63 @@ class SMSGateway extends Controller
     //
     public function index()
     {
-    	$title 		= 'SMS Gateway';
-    	$absensi    = $this->getSiswaTidakMasuk();
-		$details = [];
-        foreach ( $absensi as $sis ) {
+    	$title 		          = 'SMS Gateway';
+    	$jam_pertama          = $this->getSiswaTidakMasukbyJam('pertama');
+        $jam_kedua            = $this->getSiswaTidakMasukbyJam('kedua');
+        $jam_ketiga           = $this->getSiswaTidakMasukbyJam('ketiga');
+        $jam_keempat          = $this->getSiswaTidakMasukbyJam('keempat');
+		$jam_pertama_details  = [];
+        $jam_kedua_details    = [];
+        $jam_ketiga_details   = [];
+        $jam_keempat_details  = [];
+
+        foreach ( $jam_pertama as $sis ) {
             $data[] = [
                 'nis'   	=> $this->getNisSiswa($sis->id_siswa),
                 'nama'  	=> $this->getNamaSiswa($sis->id_siswa),
+                'kelas'     => $this->getKelasSiswa($sis->id_kelas),
                 'status' 	=> $sis->status,
             ];
-            $details = collect($data);
+            $jam_pertama_details = collect($data);
         } 
-        $details = collect($details);
-    	return view( 'sms.index', ['data_absensi' => $details, 'title' => $title]);
+
+        foreach ( $jam_kedua as $sis ) {
+            $data[] = [
+                'nis'       => $this->getNisSiswa($sis->id_siswa),
+                'nama'      => $this->getNamaSiswa($sis->id_siswa),
+                'kelas'     => $this->getKelasSiswa($sis->id_kelas),
+                'status'    => $sis->status,
+            ];
+            $jam_kedua_details = collect($data);
+        } 
+
+        foreach ( $jam_ketiga as $sis ) {
+            $data[] = [
+                'nis'       => $this->getNisSiswa($sis->id_siswa),
+                'nama'      => $this->getNamaSiswa($sis->id_siswa),
+                'kelas'     => $this->getKelasSiswa($sis->id_kelas),
+                'status'    => $sis->status,
+            ];
+            $jam_ketiga_details = collect($data);
+        } 
+
+        foreach ( $jam_keempat as $sis ) {
+            $data[] = [
+                'nis'       => $this->getNisSiswa($sis->id_siswa),
+                'nama'      => $this->getNamaSiswa($sis->id_siswa),
+                'kelas'     => $this->getKelasSiswa($sis->id_kelas),
+                'status'    => $sis->status,
+            ];
+            $jam_keempat_details = collect($data);
+        } 
+
+    	return view( 'sms.index', [
+            'jam_pertama'   => $jam_pertama_details, 
+            'jam_kedua'     => $jam_kedua_details, 
+            'jam_ketiga'    => $jam_ketiga_details, 
+            'jam_keempat'   => $jam_keempat_details, 
+            'title'         => $title
+        ]);
     }
 
     public function kirimSMS(Request $request)
@@ -120,6 +164,19 @@ class SMSGateway extends Controller
                     ->get();
         return $absensi;
     }
+
+    public function getSiswaTidakMasukbyJam( $jam )
+    {
+        $absensi    = DB::table('absensi')->distinct()
+                    ->select('id_siswa','status','id_kelas')
+                    ->leftJoin('detail_absensi', 'absensi.id', '=', 'detail_absensi.id_absensi' )
+                    ->where('status', '!=', 'H' )
+                    ->where('jam_pelajaran', $jam )
+                    ->where('tanggal', now() )
+                    ->get();
+        return $absensi;
+    }
+
     public function getNamaSiswa($id)
     {
     	$siswa    = DB::table('siswa')
@@ -138,6 +195,16 @@ class SMSGateway extends Controller
                     ->first();
 
     	return $siswa->nis;
+    }
+
+    public function getKelasSiswa($id)
+    {
+        $kelas    = DB::table('kelas')
+                    ->select('nama_kelas')
+                    ->where('id', $id )
+                    ->first();
+
+        return $kelas->nama_kelas;
     }
 
     public function getTeleponWali($id)

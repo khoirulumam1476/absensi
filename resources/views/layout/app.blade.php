@@ -37,7 +37,7 @@
 							</li>
 							@if( Auth::check() && auth()->user()->role == 'admin' )
 								<li class="nav-item dropdown">
-									<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">Pengolahan Data</a>
+									<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button"><i class="fa fa-file"></i> Pengolahan Data</a>
 
 									<div aria-labelledby="navbarDropdown" class="dropdown-menu">
 										<a class="dropdown-item" href="{{ url('/jurusan') }}">Data Jurusan</a>
@@ -49,14 +49,14 @@
 								</li>
 							@endif;
 							<li class="nav-item dropdown">
-								<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ url('/absensi') }}" id="navbarDropdown" role="button">Absensi</a>
+								<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ url('/absensi') }}" id="navbarDropdown" role="button"><i class="fa fa-book"></i> Absensi</a>
 								<div aria-labelledby="navbarDropdown" class="dropdown-menu">
 									<a class="dropdown-item" href="{{ url('/absensi') }}">Detail Absensi</a>
 									<a class="dropdown-item" href="{{ url('/absensi/list') }}">Input Absensi</a>
 								</div>
 							</li>
 							<li class="nav-item dropdown">
-								<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">SMS Gateway</a>
+								<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button"><i class="fa fa-envelope"></i> SMS Gateway</a>
 
 								<div aria-labelledby="navbarDropdown" class="dropdown-menu">
 									<a class="dropdown-item" href="{{ url('/sms') }}">Message</a>
@@ -67,10 +67,12 @@
 						@if( Auth::check() )
 							<ul class="navbar-nav mr">
 								<li class="nav-item dropdown">
-									<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle text-capitalize" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">Hi, {{Auth::User()->name}}</a>
+									<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle text-capitalize" data-toggle="dropdown" href="#" id="navbarDropdown" role="button"><i class="fa fa-user"></i> Hi, {{Auth::User()->name}}</a>
 									<div aria-labelledby="navbarDropdown" class="dropdown-menu">
-										<a class="dropdown-item" href="{{ url('/sms/outbox') }}">Edit Profile</a>
-										<a class="dropdown-item" href="{{ url('/sms') }}">Manage Users</a>
+									@if( Auth::check() && auth()->user()->role == 'admin' )
+										<a class="dropdown-item" href="/users/{{Auth::User()->id}}/edit">Edit Profile</a>
+										<a class="dropdown-item" href="{{ url('/users') }}">Manage Users</a>
+									@endif
 										<a class="dropdown-item" href="/logout">Logout</a>
 									</div>
 								</li>

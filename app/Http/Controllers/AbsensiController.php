@@ -81,12 +81,13 @@ class AbsensiController extends Controller
 
     public function simpan(Request $request)
     {
-        $absensi            =  new \App\Absensi;
-        $absensi->id_guru   = $request->input('id_guru');
-        $absensi->id_kelas  = $request->input('id_kelas');
-        $absensi->id_mapel  = $request->input('id_mapel');
-        $absensi->semester  = $request->input('semester');
-        $absensi->tanggal   = $request->input('tanggal');
+        $absensi                =  new \App\Absensi;
+        $absensi->id_guru       = $request->input('id_guru');
+        $absensi->id_kelas      = $request->input('id_kelas');
+        $absensi->id_mapel      = $request->input('id_mapel');
+        $absensi->semester      = $request->input('semester');
+        $absensi->jam_pelajaran = $request->input('jam_pelajaran');
+        $absensi->tanggal       = $request->input('tanggal');
         $absensi->save();
 
         foreach ( $request->absen as $user_id => $status ) {

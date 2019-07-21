@@ -15,6 +15,7 @@ class MapelController extends Controller
     	\App\Mapel::create($request->all());
     	return redirect('/mapel')->with('sukses','Data Berhasil di Input');
     }
+    
     public function edit($id)
     { 
     	$mapel     = \App\Mapel::find($id);

@@ -19,7 +19,7 @@ Route::get('/login', 'AuthController@login')->name('login');
 Route::get('/logout', 'AuthController@logout');
 Route::post('/postlogin', 'AuthController@postlogin');
 
-Route::group(['middleware' => ['auth', 'checkRole:admin']], function() {
+Route::group(['middleware' => ['auth', 'checkRole:admin,guru']], function() {
 	Route::get('/siswa', 'SiswaController@index');
 	Route::post('/siswa/tambah', 'SiswaController@tambah');
 	Route::get('/siswa/{id}/edit', 'SiswaController@edit');
@@ -66,4 +66,8 @@ Route::group(['middleware' => ['auth', 'checkRole:admin']], function() {
 	Route::post('/sms/kirimsms', 'SMSGateway@kirimSMS');
 	Route::get('/sms/outbox', 'SMSGateway@outbox');
 
+	Route::get('/users', 'UsersController@index');
+	Route::get('/users/{id}/edit', 'UsersController@edit');
+	Route::post('/users/{id}/update', 'UsersController@update');
+	Route::get('/users/{id}/delete', 'UsersController@delete');
 });

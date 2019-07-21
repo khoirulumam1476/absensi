@@ -8,6 +8,6 @@ class Absensi extends Model
 {
     //
     protected $table = 'absensi';
-	protected $fillable  = ['id_guru','id_kelas','tanggal'];
+	protected $fillable  = ['id_guru','id_kelas','id_mapel','semester','jam_pelajaran','tanggal'];
 
 }

@@ -53,6 +53,18 @@
 					</div>
 				</div>
 
+				<div class="col-md-4 mb-3">
+					<div class="form-row">
+						<label for="jam_pelajaran">Jam Pelajaran</label> 
+						<select name="jam_pelajaran" class="form-control" id="sel1">
+					    	<option value="pertama">Pertama</option>
+					    	<option value="kedua">Kedua</option>
+					    	<option value="ketiga">Ketiga</option>
+					    	<option value="keempat">Keempat</option>
+					  	</select>
+					</div>
+				</div>
+
 				<table class="table table-bordered table-striped table-skripsi">
 					<thead class="table-dark">
 						<tr class="d-flex">

@@ -11,6 +11,7 @@
 				</div>
 			</div>
 		@endif
+
 		<div class="wrapper">
 			<ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
 				<li class="nav-item">
@@ -32,7 +33,7 @@
 					<div class="col-12">
 						<h2>Daftar Tidak Masuk Jam Pertama</h2>
 					</div>
-					<form action="/sms/kirimsms" method="POST">
+					<form action="/sms/kirimsmsjampertama" method="POST">
 						{{csrf_field()}}
 						<table class="table table-bordered table-striped table-skripsi">
 							<thead class="table-dark">
@@ -45,18 +46,18 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach( $data_absensi as $index => $absen )
+								@foreach( $jam_pertama as $index => $absen )
 									<tr class="d-flex">
 										<td class="col-1 text-center">{{$index+1}}</td>
 										<td class="col-2">{{$absen['nis']}}</td>
 										<td class="col-5 text-uppercase">{{$absen['nama']}}</td>
-										<td class="col-2 text-uppercase"></td>
+										<td class="col-2 text-uppercase">{{$absen['kelas']}}</td>
 										<td class="text-center col-2">{{$absen['status']}}</td>
 									</tr>
 								@endforeach
 							</tbody>
 						</table>
-						<input type="submit" value="Kirim" class="btn btn-primary">
+						<input type="submit" value="Kirim SMS" class="btn btn-primary">
 					</form>
 				</div>
 
@@ -64,89 +65,96 @@
 					<div class="col-12">
 						<h2>Daftar Tidak Masuk Jam Kedua</h2>
 					</div>
-					<table class="table table-bordered table-striped table-skripsi">
-						<thead class="table-dark">
-							<tr class="d-flex">
-								<th class="col-1">No</th>
-								<th class="col-2">NIS</th>
-								<th class="col-5">Nama</th>
-								<th class="col-2">Kelas</th>
-								<th class="col-2">status</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach( $data_absensi as $index => $absen )
+					<form action="/sms/kirimsmsjamkedua" method="POST">
+						<table class="table table-bordered table-striped table-skripsi">
+							<thead class="table-dark">
 								<tr class="d-flex">
-									<td class="col-1 text-center">{{$index+1}}</td>
-									<td class="col-2">{{$absen['nis']}}</td>
-									<td class="col-5 text-uppercase">{{$absen['nama']}}</td>
-									<td class="col-2 text-uppercase"></td>
-									<td class="text-center col-2">{{$absen['status']}}</td>
+									<th class="col-1">No</th>
+									<th class="col-2">NIS</th>
+									<th class="col-5">Nama</th>
+									<th class="col-2">Kelas</th>
+									<th class="col-2">status</th>
 								</tr>
-							@endforeach
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								@foreach( $jam_kedua as $index => $absen )
+									<tr class="d-flex">
+										<td class="col-1 text-center">{{$index+1}}</td>
+										<td class="col-2">{{$absen['nis']}}</td>
+										<td class="col-5 text-uppercase">{{$absen['nama']}}</td>
+										<td class="col-2 text-uppercase">{{$absen['kelas']}}</td>
+										<td class="text-center col-2">{{$absen['status']}}</td>
+									</tr>
+								@endforeach
+							</tbody>
+						</table>
+						<input type="submit" value="Kirim SMS" class="btn btn-primary">
+					</form>
 				</div>
 
 				<div aria-labelledby="pills-jam-ketiga-tab" class="tab-pane fade" id="jam-ketiga" role="tabpanel">
 					<div class="col-12">
 						<h2>Daftar Tidak Masuk Jam Ketiga</h2>
 					</div>
-					<table class="table table-bordered table-striped table-skripsi">
-						<thead class="table-dark">
-							<tr class="d-flex">
-								<th class="col-1">No</th>
-								<th class="col-2">NIS</th>
-								<th class="col-5">Nama</th>
-								<th class="col-2">Kelas</th>
-								<th class="col-2">status</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach( $data_absensi as $index => $absen )
+					<form action="/sms/kirimsmsjamketiga" method="POST">
+						<table class="table table-bordered table-striped table-skripsi">
+							<thead class="table-dark">
 								<tr class="d-flex">
-									<td class="col-1 text-center">{{$index+1}}</td>
-									<td class="col-2">{{$absen['nis']}}</td>
-									<td class="col-5 text-uppercase">{{$absen['nama']}}</td>
-									<td class="col-2 text-uppercase"></td>
-									<td class="text-center col-2">{{$absen['status']}}</td>
+									<th class="col-1">No</th>
+									<th class="col-2">NIS</th>
+									<th class="col-5">Nama</th>
+									<th class="col-2">Kelas</th>
+									<th class="col-2">status</th>
 								</tr>
-							@endforeach
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								@foreach( $jam_ketiga as $index => $absen )
+									<tr class="d-flex">
+										<td class="col-1 text-center">{{$index+1}}</td>
+										<td class="col-2">{{$absen['nis']}}</td>
+										<td class="col-5 text-uppercase">{{$absen['nama']}}</td>
+										<td class="col-2 text-uppercase">{{$absen['kelas']}}</td>
+										<td class="text-center col-2">{{$absen['status']}}</td>
+									</tr>
+								@endforeach
+							</tbody>
+						</table>
+						<input type="submit" value="Kirim SMS" class="btn btn-primary">
+					</form>
 				</div>
 
 				<div aria-labelledby="pills-jam-keempat-tab" class="tab-pane fade" id="jam-keempat" role="tabpanel">
 					<div class="col-12">
 						<h2>Daftar Tidak Masuk Jam Keempat</h2>
 					</div>
-					<table class="table table-bordered table-striped table-skripsi">
-						<thead class="table-dark">
-							<tr class="d-flex">
-								<th class="col-1">No</th>
-								<th class="col-2">NIS</th>
-								<th class="col-5">Nama</th>
-								<th class="col-2">Kelas</th>
-								<th class="col-2">status</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach( $data_absensi as $index => $absen )
+					<form action="/sms/kirimsmsjamkeempat" method="POST">
+						<table class="table table-bordered table-striped table-skripsi">
+							<thead class="table-dark">
 								<tr class="d-flex">
-									<td class="col-1 text-center">{{$index+1}}</td>
-									<td class="col-2">{{$absen['nis']}}</td>
-									<td class="col-5 text-uppercase">{{$absen['nama']}}</td>
-									<td class="col-2 text-uppercase"></td>
-									<td class="text-center col-2">{{$absen['status']}}</td>
+									<th class="col-1">No</th>
+									<th class="col-2">NIS</th>
+									<th class="col-5">Nama</th>
+									<th class="col-2">Kelas</th>
+									<th class="col-2">status</th>
 								</tr>
-							@endforeach
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								@foreach( $jam_keempat as $index => $absen )
+									<tr class="d-flex">
+										<td class="col-1 text-center">{{$index+1}}</td>
+										<td class="col-2">{{$absen['nis']}}</td>
+										<td class="col-5 text-uppercase">{{$absen['nama']}}</td>
+										<td class="col-2 text-uppercase">{{$absen['kelas']}}</td>
+										<td class="text-center col-2">{{$absen['status']}}</td>
+									</tr>
+								@endforeach
+							</tbody>
+						</table>
+						<input type="submit" value="Kirim SMS" class="btn btn-primary">
+					</form>
 				</div>
 				
 			</div>
-			
-			
 			
 		</div>
 	</div>
