@@ -67,7 +67,7 @@
 		              <td>{{ $kelas->nama_kelas }}</td>
 		              <td class="text-center">
 		                <div class="btn-group" role="group" aria-label="Basic example">
-		                  <a class="btn btn-info btn-sm">Detail</a>
+		                 
 						  <a href="/kelas/{{$kelas->id}}/edit" class="btn btn-warning btn-sm">Edit</a>
 						  <a href="/kelas/{{$kelas->id}}/delete"  class="btn btn-danger btn-sm" onclick="return confirm('Yakin AKan Dihapus?')">Hapus</a>
 		                </div>

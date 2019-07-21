@@ -154,6 +154,7 @@ class AbsensiController extends Controller
                     // ->select('id_kelas')
                     ->where('id_kelas', $id)
                     ->where('status', '!=', 'H')
+                    ->whereDay('tanggal', '=', date('d') )
                     ->get();
 
         return $absensi;

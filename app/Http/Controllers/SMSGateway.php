@@ -168,13 +168,16 @@ class SMSGateway extends Controller
     public function getSiswaTidakMasukbyJam( $jam )
     {
         $absensi    = DB::table('absensi')->distinct()
-                    ->select('id_siswa','status','id_kelas')
+                    ->select('id_siswa','status','id_kelas','tanggal')
                     ->leftJoin('detail_absensi', 'absensi.id', '=', 'detail_absensi.id_absensi' )
                     ->where('status', '!=', 'H' )
                     ->where('jam_pelajaran', $jam )
-                    ->where('tanggal', now() )
-                    ->get();
-        return $absensi;
+                    ->whereDay('tanggal', '=', date('d') );
+                    
+        if ( $jam == 'kedua' || $jam == 'ketiga' || $jam == 'keempat' ) {
+            $absensi->where('status', '=', 'A');
+        }
+        return $absensi->get();
     }
 
     public function getNamaSiswa($id)
