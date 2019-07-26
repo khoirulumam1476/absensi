@@ -32,8 +32,8 @@
 					   <div class="form-group">
 						  <label for="sel1">Jenis Kelamin:</label>
 						  <select name="jenis_kelamin" class="form-control" id="sel1">
-							<option>Laki-laki</option>
-							<option>Perempuan</option>
+							<option value="L")>Laki-laki</option>
+							<option value="P">Perempuan</option>
 						  </select>
 						</div>
 					  <div class="form-group">

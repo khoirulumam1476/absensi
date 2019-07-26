@@ -32,35 +32,34 @@ class SMSGateway extends Controller
             ];
             $jam_pertama_details = collect($data);
         } 
-
         foreach ( $jam_kedua as $sis ) {
-            $data[] = [
+            $data_2[] = [
                 'nis'       => $this->getNisSiswa($sis->id_siswa),
                 'nama'      => $this->getNamaSiswa($sis->id_siswa),
                 'kelas'     => $this->getKelasSiswa($sis->id_kelas),
                 'status'    => $sis->status,
             ];
-            $jam_kedua_details = collect($data);
+            $jam_kedua_details = collect($data_2);
         } 
 
         foreach ( $jam_ketiga as $sis ) {
-            $data[] = [
+            $data_3[] = [
                 'nis'       => $this->getNisSiswa($sis->id_siswa),
                 'nama'      => $this->getNamaSiswa($sis->id_siswa),
                 'kelas'     => $this->getKelasSiswa($sis->id_kelas),
                 'status'    => $sis->status,
             ];
-            $jam_ketiga_details = collect($data);
+            $jam_ketiga_details = collect($data_3);
         } 
 
         foreach ( $jam_keempat as $sis ) {
-            $data[] = [
+            $data_4[] = [
                 'nis'       => $this->getNisSiswa($sis->id_siswa),
                 'nama'      => $this->getNamaSiswa($sis->id_siswa),
                 'kelas'     => $this->getKelasSiswa($sis->id_kelas),
                 'status'    => $sis->status,
             ];
-            $jam_keempat_details = collect($data);
+            $jam_keempat_details = collect($data_4);
         } 
 
     	return view( 'sms.index', [

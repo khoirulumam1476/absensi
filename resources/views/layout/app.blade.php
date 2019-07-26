@@ -51,10 +51,12 @@
 							<li class="nav-item dropdown">
 								<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ url('/absensi') }}" id="navbarDropdown" role="button"><i class="fa fa-book"></i> Absensi</a>
 								<div aria-labelledby="navbarDropdown" class="dropdown-menu">
-									<a class="dropdown-item" href="{{ url('/absensi') }}">Detail Absensi</a>
 									<a class="dropdown-item" href="{{ url('/absensi/list') }}">Input Absensi</a>
+									<a class="dropdown-item" href="{{ url('/detail') }}">Detail Absensi</a>
+									<a class="dropdown-item" href="{{ url('/absensi') }}">Rekap Absensi</a>
 								</div>
 							</li>
+							@if( Auth::check() && auth()->user()->role == 'admin' )
 							<li class="nav-item dropdown">
 								<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button"><i class="fa fa-envelope"></i> SMS Gateway</a>
 
@@ -63,14 +65,15 @@
 									<a class="dropdown-item" href="{{ url('/sms/outbox') }}">Outbox</a>
 								</div>
 							</li>
+							@endif;
 						</ul>
 						@if( Auth::check() )
 							<ul class="navbar-nav mr">
 								<li class="nav-item dropdown">
 									<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle text-capitalize" data-toggle="dropdown" href="#" id="navbarDropdown" role="button"><i class="fa fa-user"></i> Hi, {{Auth::User()->name}}</a>
 									<div aria-labelledby="navbarDropdown" class="dropdown-menu">
+										<a class="dropdown-item" href="/users/{{Auth::User()->id}}/edit">Edit Pasword</a>
 									@if( Auth::check() && auth()->user()->role == 'admin' )
-										<a class="dropdown-item" href="/users/{{Auth::User()->id}}/edit">Edit Profile</a>
 										<a class="dropdown-item" href="{{ url('/users') }}">Manage Users</a>
 									@endif
 										<a class="dropdown-item" href="/logout">Logout</a>

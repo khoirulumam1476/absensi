@@ -21,10 +21,10 @@ class AbsensiController extends Controller
                     ->select('id_siswa')
                     ->leftJoin('detail_absensi', 'id_absensi', '=', 'detail_absensi.id_absensi' );
 
-        if ($request->has('kelas') && $set_kelas != 0 ) {
+        if ($request->has('kelas') ) {
             $absensi->where('id_kelas', '=', $set_kelas);
         }
-        if ($request->has('semester') && $set_semester != 0) {
+        if ($request->has('semester') ) {
             $absensi->where('semester', '=', $set_semester);
         }
         $result = $absensi->distinct()->get();
@@ -98,7 +98,28 @@ class AbsensiController extends Controller
             $detail_absensi->save();
         }
 
-        return redirect('/absensi')->with('sukses','Data Berhasil di Input');
+        return redirect('/absensi/detail/?id='.$absensi->id)->with('sukses','Data Berhasil di Input');
+    }
+
+    public function detail()
+    { 
+        $id         = isset( $_GET['id'] ) ? $_GET['id'] : '' ;
+        $absensi    = DB::table('detail_absensi')
+                    ->where('id_absensi', $id)
+                    ->get();
+        $details    = [];
+
+        foreach ( $absensi as $sis ) {
+            $data[] = [
+                'nama'      => $this->getNama($sis->id_siswa),
+                'nis'       => $this->getnis($sis->id_siswa),
+                'status'    => $sis->status,
+            ];
+            $details = collect( $data );
+        }
+        $title      = 'Details Absensi';
+        return view('absensi.detail', ['absensi' => $details, 'title' => $title ]);
+
     }
 
     public function export()
