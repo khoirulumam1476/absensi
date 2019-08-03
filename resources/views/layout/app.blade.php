@@ -52,7 +52,6 @@
 								<a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown" href="{{ url('/absensi') }}" id="navbarDropdown" role="button"><i class="fa fa-book"></i> Absensi</a>
 								<div aria-labelledby="navbarDropdown" class="dropdown-menu">
 									<a class="dropdown-item" href="{{ url('/absensi/list') }}">Input Absensi</a>
-									<a class="dropdown-item" href="{{ url('/detail') }}">Detail Absensi</a>
 									<a class="dropdown-item" href="{{ url('/absensi') }}">Rekap Absensi</a>
 								</div>
 							</li>

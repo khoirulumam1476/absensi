@@ -64,8 +64,12 @@
 					@endforeach
 				</tbody>
 			</table>
+			@if( Auth::check() && auth()->user()->role == 'admin' )
 			<a href="/absensi/export" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
-			
+
+			<br>
+			<a href="/absensi/pdf" class="btn btn-success my-3" target="_blank">EXPORT PDF</a>
+			@endif;
 		</div>
 	</div>
 </div>
