@@ -1,7 +1,11 @@
 @extends('layout.app')
 
 @section('content')
-    	<h2>Selamat Datang, {{Auth::User()->name}}</h2>
+		@if( Auth::check() )
+    		<h2>Selamat Datang, {{Auth::User()->name}}</h2>
+    	@else 
+			<h2>Selamat Datang</h2>
+    	@endif
 
 <div class="isi">
     <div class="container">

@@ -56,6 +56,15 @@
 				    <label for="Alamat">Alamat:</label>
 				    <input name="alamat" type="text" class="form-control" id="Alamat" value="{{$guru->alamat}}">
 				  </div>
+				  <div class="form-group">
+					<label for="mapel">Mengajar?</label> 
+					<select name="mengajar" class="form-control" id="sel1">
+						@foreach( $data_mapel as $mapel )
+							<option value="{{$mapel->nama_mapel}}" @if($guru->mengajar == $mapel->nama_mapel) selected @endif>{{$mapel->nama_mapel}}</option>
+						@endforeach
+					</select>
+
+				  </div>
 				  <div class="modal-footer">
 					 <input class="btn btn-primary" type="submit" value="Simpan">
 				  </div>

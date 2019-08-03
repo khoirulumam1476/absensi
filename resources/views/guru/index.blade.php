@@ -55,6 +55,15 @@
 						<label for="Alamat">Alamat:</label>
 						<input name="alamat" type="text" class="form-control" id="Alamat">
 					  </div>
+					  <div class="form-group">
+						<label for="mapel">Mengajar?</label> 
+						<select name="mengajar" class="form-control" id="sel1">
+							@foreach( $data_mapel as $mapel )
+								<option value="{{$mapel->nama_mapel}}">{{$mapel->nama_mapel}}</option>
+							@endforeach
+						</select>
+
+					  </div>
 					  <div class="modal-footer">
 						<button class="btn btn-secondary" data-dismiss="modal" type="button">Batal</button> <input class="btn btn-primary" type="submit" value="Simpan">
 					  </div>

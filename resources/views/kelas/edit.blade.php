@@ -24,7 +24,11 @@
 					</div>
 					<div class="form-group">
 						<label for="emailAdress">Kode Jurusan</label> 
-						<input name="kode_jurusan" class="form-control" id="emailAdress" placeholder="" type="text" value="{{$kelas->kode_jurusan}}">
+						<select name="kode_jurusan" class="form-control" id="sel1">
+							@foreach( $data_jurusan as $jurusan )
+								<option value="{{$jurusan->kode_jurusan}}">{{$jurusan->jurusan}}</option>
+							@endforeach
+						</select>
 					</div>
 					<div class="form-group">
 						<label for="emailAdress">Nama Kelas</label> 

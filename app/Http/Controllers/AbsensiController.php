@@ -69,14 +69,19 @@ class AbsensiController extends Controller
     	$id_kelas = $request->query('id_kelas');
         $data_mapel = \App\Mapel::all();
         $data_guru  = \App\Guru::all();
-
+        $user       = auth()->user();
+        $set_user     = [
+            'id_guru'     => $this->getIdGuruByUserID($user->id),
+            'nama_mapel'  => $this->getGuruMengajarByuserID($user->id),
+        ];
+        $current_user = collect( $set_user );
     	$title 		= 'Update Absensi';
     	if ( isset( $id_kelas ) ) {
     		$data_siswa = \App\Siswa::where( 'kelas', $this->getNamaKelas( $id_kelas ) )->get();
     	} else {
     		$data_siswa = \App\Siswa::all();
     	}
-    	return view( 'absensi.input', ['data_siswa' => $data_siswa,'data_mapel' => $data_mapel,'data_guru' => $data_guru, 'title' => $title]);
+    	return view( 'absensi.input', ['data_siswa' => $data_siswa,'data_mapel' => $data_mapel,'data_guru' => $data_guru, 'current_user' => $current_user, 'title' => $title]);
     }
 
     public function simpan(Request $request)
@@ -84,7 +89,11 @@ class AbsensiController extends Controller
         $absensi                =  new \App\Absensi;
         $absensi->id_guru       = $request->input('id_guru');
         $absensi->id_kelas      = $request->input('id_kelas');
-        $absensi->id_mapel      = $request->input('id_mapel');
+        if ( auth()->user()->role == 'admin' ) {
+            $absensi->id_mapel      = $request->input('id_mapel');
+        } else {
+            $absensi->id_mapel      = $this->getIdMapelbyNama($request->input('nama_mapel'));
+        }
         $absensi->semester      = $request->input('semester');
         $absensi->jam_pelajaran = $request->input('jam_pelajaran');
         $absensi->tanggal       = $request->input('tanggal');
@@ -175,9 +184,40 @@ class AbsensiController extends Controller
                     // ->select('id_kelas')
                     ->where('id_kelas', $id)
                     ->where('status', '!=', 'H')
+                    ->where('jam_pelajaran', 'pertama')
                     ->whereDay('tanggal', '=', date('d') )
                     ->get();
 
         return $absensi;
+    }
+
+    public function getIdMapelbyNama($nama_mapel)
+    {
+        $mapel    = DB::table('mapel')
+                    ->select('id')
+                    ->where('nama_mapel', $nama_mapel )
+                    ->first();
+
+        return $mapel->id;
+    }
+
+    public function getIdGuruByUserID($user_id)
+    {
+        $guru    = DB::table('guru')
+                    ->select('id')
+                    ->where('user_id', $user_id )
+                    ->first();
+
+        return $guru->id;
+    }
+
+    public function getGuruMengajarByuserID($user_id)
+    {
+        $guru    = DB::table('guru')
+                    ->select('mengajar')
+                    ->where('user_id', $user_id )
+                    ->first();
+
+        return $guru->mengajar;
     }
 }

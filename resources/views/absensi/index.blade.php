@@ -69,7 +69,7 @@
 
 			<br>
 			<a href="/absensi/pdf" class="btn btn-success my-3" target="_blank">EXPORT PDF</a>
-			@endif;
+			@endif
 		</div>
 	</div>
 </div>

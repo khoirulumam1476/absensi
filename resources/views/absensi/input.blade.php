@@ -23,6 +23,7 @@
 						<input class="form-control" type="hidden" value="{{ date('Y-m-d H:i:s') }}" name="tanggal">
 					</div>
 				</div>
+				@if( Auth::check() && auth()->user()->role == 'admin' )
 				<div class="col-md-4 mb-3">
 					<div class="form-row">
 						<label for="validationCustom02">Mata Pelajaran</label> 
@@ -43,6 +44,10 @@
 					  </select>
 					</div>
 				</div>
+				@else
+					<input type="hidden" name="nama_mapel" value="{{$current_user['nama_mapel']}}">
+					<input type="hidden" name="id_guru" value="{{$current_user['id_guru']}}">
+				@endif
 				<div class="col-md-4 mb-3">
 					<div class="form-row">
 						<label for="semester">Semester</label> 

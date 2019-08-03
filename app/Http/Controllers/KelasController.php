@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 class KelasController extends Controller
 {
     function index() {
-    	$data_kelas = \App\Kelas::all();
-    	$title 		= 'Data Kelas';
-    	return view( 'kelas.index', ['data_kelas' => $data_kelas, 'title'=>$title]);
+    	$data_kelas    = \App\Kelas::all();
+    	$title 		   = 'Data Kelas';
+        $data_jurusan  = \App\Jurusan::all();
+    	return view( 'kelas.index', ['data_kelas' => $data_kelas, 'data_jurusan' => $data_jurusan, 'title' => $title ]);
     }
     
     function tambah(Request $request) {
@@ -18,10 +19,11 @@ class KelasController extends Controller
     }
     
     public function edit($id)
-    { 
+    {  
     	$kelas  = \App\Kelas::find($id);
+        $data_jurusan  = \App\Jurusan::all();
     	$title 	= 'Data Kelas';
-    	return view('kelas.edit', ['kelas' => $kelas, 'title' => $title ]);
+    	return view('kelas.edit', ['kelas' => $kelas, 'data_jurusan' => $data_jurusan, 'title' => $title ]);
 
     }
 

@@ -8,9 +8,10 @@ use App\User;
 class GuruController extends Controller
 {
     function index() {
-    	$data_guru = \App\Guru::all();
-    	$title 		= 'Data Guru';
-    	return view( 'guru.index', ['data_guru' => $data_guru, 'title' => $title]);
+    	$data_guru    = \App\Guru::all();
+        $data_mapel   = \App\Mapel::all();
+    	$title 		  = 'Data Guru';
+    	return view( 'guru.index', [ 'data_guru' => $data_guru, 'data_mapel' => $data_mapel, 'title' => $title]);
     }
     function tambah(Request $request) {
     	
@@ -33,9 +34,10 @@ class GuruController extends Controller
 
     public function edit($id)
     { 
-    	$guru = \App\Guru::find($id);
+    	$guru          = \App\Guru::find($id);
+        $data_mapel    = \App\Mapel::all();
     	$title 		= 'Data Guru';
-    	return view('guru.edit', ['guru' => $guru, 'title' => $title ]);
+    	return view('guru.edit', ['guru' => $guru, 'data_mapel' => $data_mapel,  'title' => $title ]);
 
     }
 
