@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="section-content">
+<div class="section-content" id="section-content">
 	<div class="container"> 
 		<div class="wrapper">
 			@if(session('sukses'))  
@@ -38,7 +38,7 @@
 					</div>
 				</div>
 			</form>
-			<table class="table table-bordered table-striped table-skripsi">
+			<table id="rekap-absensi" class="table table-bordered table-striped table-skripsi">
 				<thead class="table-dark">
 					<tr class="d-flex">
 						<th class="col-1">No</th>
@@ -66,9 +66,7 @@
 			</table>
 			@if( Auth::check() && auth()->user()->role == 'admin' )
 			<a href="/absensi/export" class="btn btn-success my-3" target="_blank">EXPORT EXCEL</a>
-
-			<br>
-			<a href="/absensi/pdf" class="btn btn-success my-3" target="_blank">EXPORT PDF</a>
+			<a href="" class="btn btn-primary my-3 export-to-pdf">EXPORT PDF</a>
 			@endif
 		</div>
 	</div>

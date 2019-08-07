@@ -10,7 +10,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
 	</script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css"></script>
 </head>
 <body>
 <div class="header">
@@ -94,7 +93,16 @@
 	</div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://unpkg.com/jspdf@1.5.3/dist/jspdf.min.js"></script>
+<script src="https://unpkg.com/jspdf-autotable@3.1.4/dist/jspdf.plugin.autotable.js"></script>
+<script>
+    var doc = new jsPDF();
+	jQuery('.export-to-pdf').click(function (e) {   
+		e.preventDefault();
+	    doc.autoTable({html: '#rekap-absensi'});
+	    doc.save('absensi.pdf');
+	});
+</script>
 <script>
 	jQuery(document).ready(function($) {
 		$("#success-alert").fadeTo(2000, 500).slideUp(500, function(){

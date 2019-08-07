@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Exports\AbsensiExport;
 use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 
 class AbsensiController extends Controller
 {

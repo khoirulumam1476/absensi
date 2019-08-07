@@ -71,9 +71,9 @@ class SMSGateway extends Controller
         ]);
     }
 
-    public function kirimSMS(Request $request)
+    public function kirimSMSjamPertama(Request $request)
     {
-    	$absensi    = $this->getSiswaTidakMasuk();
+    	$absensi    = $this->getSiswaTidakMasukbyJam('pertama');
 		$details 	= [];
         foreach ( $absensi as $sis ) {
         	switch ( $sis->status ) {
@@ -129,6 +129,184 @@ class SMSGateway extends Controller
 
 		return redirect('/sms')->with( 'sukses', 'Pesan berhasil dikirim' );
     }
+
+    public function kirimSMSjamKedua(Request $request)
+    {
+        $absensi    = $this->getSiswaTidakMasukbyJam('kedua');
+        $details    = [];
+        foreach ( $absensi as $sis ) {
+            switch ( $sis->status ) {
+                case 'S':
+                    $body = "Pada jam mata pelajaran pertama anak Anda dengan nama {$this->getNamaSiswa($sis->id_siswa)} tidak masuk karna sakit.
+
+                        by
+                        kepsek MA Walisongo 3 Sebaung";
+                    break;
+                case 'I':
+                    $body = "Pada jam mata pelajaran pertama anak Anda dengan nama {$this->getNamaSiswa($sis->id_siswa)} tidak masuk karna Ijin.
+
+                        by
+                        kepsek MA Walisongo 3 Sebaung";
+                    break;
+                case 'A':
+                    $body = "Pada jam mata pelajaran pertama anak Anda dengan nama {$this->getNamaSiswa($sis->id_siswa)} tidak masuk tanpa keterangan Alias Bolos
+
+                        by
+                        kepsek MA Walisongo 3 Sebaung";
+                    break;
+                default:
+                    $body = '';
+                    break;
+            }
+            
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+              CURLOPT_URL               => "https://smsgateway24.com/getdata/addsms",
+              CURLOPT_RETURNTRANSFER    => true,
+              CURLOPT_ENCODING          => "",
+              CURLOPT_MAXREDIRS         => 10,
+              CURLOPT_TIMEOUT           => 0,
+              CURLOPT_FOLLOWLOCATION    => false,
+              CURLOPT_HTTP_VERSION      => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST     => "POST",
+              CURLOPT_POSTFIELDS        => array(
+                    'token' => '56383d5d000a887ac11d21d2ab4ff365',
+                    'sendto' => $this->getTeleponWali($sis->id_siswa),
+                    'body' => $body,
+                    'device_id' => '778', 
+                    'sim' => '2'
+                ),
+            ));
+
+            $response   = curl_exec($curl);
+            $err        = curl_error($curl);
+
+            curl_close($curl);
+        } 
+
+
+        return redirect('/sms')->with( 'sukses', 'Pesan berhasil dikirim' );
+    }
+
+    public function kirimSMSjamKetiga(Request $request)
+    {
+        $absensi    = $this->getSiswaTidakMasukbyJam('ketiga');
+        $details    = [];
+        foreach ( $absensi as $sis ) {
+            switch ( $sis->status ) {
+                case 'S':
+                    $body = "Pada jam mata pelajaran pertama anak Anda dengan nama {$this->getNamaSiswa($sis->id_siswa)} tidak masuk karna sakit.
+
+                        by
+                        kepsek MA Walisongo 3 Sebaung";
+                    break;
+                case 'I':
+                    $body = "Pada jam mata pelajaran pertama anak Anda dengan nama {$this->getNamaSiswa($sis->id_siswa)} tidak masuk karna Ijin.
+
+                        by
+                        kepsek MA Walisongo 3 Sebaung";
+                    break;
+                case 'A':
+                    $body = "Pada jam mata pelajaran pertama anak Anda dengan nama {$this->getNamaSiswa($sis->id_siswa)} tidak masuk tanpa keterangan Alias Bolos
+
+                        by
+                        kepsek MA Walisongo 3 Sebaung";
+                    break;
+                default:
+                    $body = '';
+                    break;
+            }
+            
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+              CURLOPT_URL               => "https://smsgateway24.com/getdata/addsms",
+              CURLOPT_RETURNTRANSFER    => true,
+              CURLOPT_ENCODING          => "",
+              CURLOPT_MAXREDIRS         => 10,
+              CURLOPT_TIMEOUT           => 0,
+              CURLOPT_FOLLOWLOCATION    => false,
+              CURLOPT_HTTP_VERSION      => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST     => "POST",
+              CURLOPT_POSTFIELDS        => array(
+                    'token' => '56383d5d000a887ac11d21d2ab4ff365',
+                    'sendto' => $this->getTeleponWali($sis->id_siswa),
+                    'body' => $body,
+                    'device_id' => '778', 
+                    'sim' => '2'
+                ),
+            ));
+
+            $response   = curl_exec($curl);
+            $err        = curl_error($curl);
+
+            curl_close($curl);
+        } 
+
+
+        return redirect('/sms')->with( 'sukses', 'Pesan berhasil dikirim' );
+    }
+
+    public function kirimSMSjamKeempat(Request $request)
+    {
+        $absensi    = $this->getSiswaTidakMasukbyJam('keempat');
+        $details    = [];
+        foreach ( $absensi as $sis ) {
+            switch ( $sis->status ) {
+                case 'S':
+                    $body = "Pada jam mata pelajaran pertama anak Anda dengan nama {$this->getNamaSiswa($sis->id_siswa)} tidak masuk karna sakit.
+
+                        by
+                        kepsek MA Walisongo 3 Sebaung";
+                    break;
+                case 'I':
+                    $body = "Pada jam mata pelajaran pertama anak Anda dengan nama {$this->getNamaSiswa($sis->id_siswa)} tidak masuk karna Ijin.
+
+                        by
+                        kepsek MA Walisongo 3 Sebaung";
+                    break;
+                case 'A':
+                    $body = "Pada jam mata pelajaran pertama anak Anda dengan nama {$this->getNamaSiswa($sis->id_siswa)} tidak masuk tanpa keterangan Alias Bolos
+
+                        by
+                        kepsek MA Walisongo 3 Sebaung";
+                    break;
+                default:
+                    $body = '';
+                    break;
+            }
+            
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+              CURLOPT_URL               => "https://smsgateway24.com/getdata/addsms",
+              CURLOPT_RETURNTRANSFER    => true,
+              CURLOPT_ENCODING          => "",
+              CURLOPT_MAXREDIRS         => 10,
+              CURLOPT_TIMEOUT           => 0,
+              CURLOPT_FOLLOWLOCATION    => false,
+              CURLOPT_HTTP_VERSION      => CURL_HTTP_VERSION_1_1,
+              CURLOPT_CUSTOMREQUEST     => "POST",
+              CURLOPT_POSTFIELDS        => array(
+                    'token' => '56383d5d000a887ac11d21d2ab4ff365',
+                    'sendto' => $this->getTeleponWali($sis->id_siswa),
+                    'body' => $body,
+                    'device_id' => '778', 
+                    'sim' => '2'
+                ),
+            ));
+
+            $response   = curl_exec($curl);
+            $err        = curl_error($curl);
+
+            curl_close($curl);
+        } 
+
+
+        return redirect('/sms')->with( 'sukses', 'Pesan berhasil dikirim' );
+    }
+
 
     public function outbox()
     {

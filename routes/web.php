@@ -61,11 +61,15 @@ Route::group(['middleware' => ['auth', 'checkRole:admin,guru']], function() {
 	Route::get('/absensi/input', 'AbsensiController@input');
 	Route::post('/absensi/simpan', 'AbsensiController@simpan');
 	Route::get('/absensi/export', 'AbsensiController@export');
+	Route::get('/absensi/exportpdf', 'AbsensiController@exportPDF');
 	Route::get('/absensi/detail', 'AbsensiController@detail');
 
 
 	Route::get('/sms', 'SMSGateway@index');
-	Route::post('/sms/kirimsms', 'SMSGateway@kirimSMS');
+	Route::post('/sms/kirimsmsjampertama', 'SMSGateway@kirimSMSjamPertama');
+	Route::post('/sms/kirimsmsjamkedua', 'SMSGateway@kirimSMSjamKedua');
+	Route::post('/sms/kirimsmsjamketiga', 'SMSGateway@kirimSMSjamKetiga');
+	Route::post('/sms/kirimsmsjamkeempat', 'SMSGateway@kirimSMSjamKeempat');
 	Route::get('/sms/outbox', 'SMSGateway@outbox');
 
 	Route::get('/users', 'UsersController@index');

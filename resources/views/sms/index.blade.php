@@ -66,6 +66,7 @@
 						<h2>Daftar Tidak Masuk Jam Kedua</h2>
 					</div>
 					<form action="/sms/kirimsmsjamkedua" method="POST">
+						{{csrf_field()}}
 						<table class="table table-bordered table-striped table-skripsi">
 							<thead class="table-dark">
 								<tr class="d-flex">
@@ -97,6 +98,7 @@
 						<h2>Daftar Tidak Masuk Jam Ketiga</h2>
 					</div>
 					<form action="/sms/kirimsmsjamketiga" method="POST">
+						{{csrf_field()}}
 						<table class="table table-bordered table-striped table-skripsi">
 							<thead class="table-dark">
 								<tr class="d-flex">
@@ -128,6 +130,7 @@
 						<h2>Daftar Tidak Masuk Jam Keempat</h2>
 					</div>
 					<form action="/sms/kirimsmsjamkeempat" method="POST">
+						{{csrf_field()}}
 						<table class="table table-bordered table-striped table-skripsi">
 							<thead class="table-dark">
 								<tr class="d-flex">
